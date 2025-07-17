@@ -44,24 +44,18 @@ public class UserController {
         return user;
     }
 
-    // this is for admins
-    //@PostMapping(path = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PostMapping
     //@PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    // with @RequestParam instead of @ModelAttribute we get Content type not supported!
-    // public User createUser(@Valid @ModelAttribute UserCreateRequest dto) throws IOException {
     public User createUser(@Valid @RequestBody UserCreateRequest dto) throws IOException {
         User user = userService.createUser(dto);
         return user;
     }
 
-    //@PatchMapping(path = "{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PatchMapping(path = "{id}")
     //@PreAuthorize("hasRole('ADMIN')")
     public User updateUser(
         @PathVariable("id") int id, @Valid @RequestBody UserUpdateRequest dto) throws IOException {
-        //@PathVariable("id") int id, @Valid @ModelAttribute UserUpdateRequest dto) throws IOException {
         User user = userService.updateUser(id, dto);
         return user;
     }
