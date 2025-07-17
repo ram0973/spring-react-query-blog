@@ -31,7 +31,6 @@ dependencies {
     implementation("org.mapstruct:mapstruct:1.6.3")
     implementation("org.projectlombok:lombok-mapstruct-binding:0.2.0")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
-    // https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
 	//implementation("org.springframework.boot:spring-boot-session-data-redis")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -46,6 +45,8 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.mapstruct:mapstruct-processor")
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")

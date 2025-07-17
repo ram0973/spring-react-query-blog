@@ -3,6 +3,7 @@ package ram0973.blog.users;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ram0973.blog.common.exceptions.NoSuchEntityException;
 import ram0973.blog.common.mappers.JsonNullableMapper;
@@ -28,16 +29,18 @@ import java.util.Set;
 @NoArgsConstructor(force = true)
 public abstract class UserMapper {
 
+    @Autowired
     private final UserRoleRepository userRoleRepository;
+    @Autowired
     private final PasswordEncoder encoder;
 
-    @Mapping(target = "password", ignore = true, qualifiedByName = "mapEncodePassword")
-    @Mapping(target = "roles", ignore = true, qualifiedByName = "mapRolesStringsToEntities")
+    @Mapping(target = "password", qualifiedByName = "mapEncodePassword")
+    @Mapping(target = "roles", qualifiedByName = "mapRolesStringsToEntities")
     public abstract User map(UserCreateRequest dto);
 
     public abstract UserResponse map(User user);
 
-    @Mapping(target = "roles", ignore = true, qualifiedByName = "mapRolesStringsToEntities")
+    @Mapping(target = "roles", qualifiedByName = "mapRolesStringsToEntities")
     public abstract void update(@MappingTarget User user, UserUpdateRequest dto);
 
     @Named("mapEncodePassword")
@@ -48,6 +51,9 @@ public abstract class UserMapper {
     @Named("mapRolesStringsToEntities")
     public Set<UserRole> map(List<User.Role> roles) {
         Set<UserRole> result = new HashSet<>();
+        if (roles == null || roles.isEmpty()) {
+            return result;
+        }
         for (User.Role role : roles) {
             UserRole userRole =
                 userRoleRepository.findByRole(role).orElseThrow(() -> new NoSuchEntityException(role.name()));
