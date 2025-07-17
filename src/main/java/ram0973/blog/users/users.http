@@ -1,0 +1,27 @@
+### Get Users
+GET http://localhost:8000/api/v1/users
+
+### Get 1 User
+GET http://localhost:8000/api/v1/users/1
+
+### Create 1 User
+POST http://localhost:8000/api/v1/users
+Content-Type: application/json
+
+{
+  "email": "test@test.com",
+  "password": "password",
+  "roles": ["MODERATOR"]
+}
+
+### Update 1 User
+PATCH http://localhost:8000/api/v1/users/52
+Content-Type: application/json
+
+{
+  "email": "test-changed@test.com",
+  "password": "password-changed"
+}
+
+### Delete 1 User
+DELETE http://localhost:8000/api/v1/users/52
