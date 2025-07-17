@@ -27,7 +27,9 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding
     implementation("org.mapstruct:mapstruct:1.6.3")
+    implementation("org.projectlombok:lombok-mapstruct-binding:0.2.0")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
     // https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
