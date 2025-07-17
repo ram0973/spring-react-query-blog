@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding
+    implementation("net.datafaker:datafaker:2.4.4")
     implementation("org.mapstruct:mapstruct:1.6.3")
     implementation("org.projectlombok:lombok-mapstruct-binding:0.2.0")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
