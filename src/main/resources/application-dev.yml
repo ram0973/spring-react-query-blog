@@ -1,0 +1,43 @@
+app:
+  mailing:
+    activation-url: http://localhost:8080/activate-account
+    admin-email: "gendalf-dev-admin@white.com"
+gg:
+  jte:
+    developmentMode: true
+server:
+  port: 8000
+  servlet:
+    session:
+      timeout: 1800
+spring:
+  application:
+    name: web-dev
+  datasource:
+    password: ${DB_PASSWORD:blog}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:blog}
+    username: ${DB_USER:blog}
+  docker:
+    compose:
+      profiles:
+        active: dev
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  mail:
+    host: localhost
+    protocol: smtp
+    port: 1025
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+  threads:
+    virtual:
+      enabled: true
+

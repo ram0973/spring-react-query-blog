@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    open-in-view: false
+  output:
+    ansi:
+      enabled: always
+  profiles:
+    active: ${APP_PROFILE}
+  servlet:
+    multipart:
+      max-file-size: 3MB
+      max-request-size: 10MB
+      enabled: true
+
+
+
