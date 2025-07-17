@@ -29,6 +29,8 @@ repositories {
 dependencies {
     implementation("org.mapstruct:mapstruct:1.6.3")
     annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
+    // https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable
+    implementation("org.openapitools:jackson-databind-nullable:0.2.6")
 	//implementation("org.springframework.boot:spring-boot-session-data-redis")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
