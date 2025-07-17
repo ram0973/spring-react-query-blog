@@ -60,18 +60,6 @@ public class UserService {
             throw new EntityAlreadyExistsException("Email already in use");
         }
         User user = userMapper.map(dto);
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        List<UserRole> allRoles = userRoleRepository.findAll();
-//        if (dto.roles() != null && !dto.roles().isEmpty()) {
-//            for (User.Role dtoRole : dto.roles()) {
-//                UserRole userRole = userRoleRepository.findByRole(dtoRole).orElse(null);
-//                if (userRole == null || !allRoles.contains(userRole)) {
-//                    continue;
-//                }
-//                userRole.getUsers().add(user);
-//                user.addRole(userRole);
-//            }
-//        }
         return userRepository.save(user);
     }
 
@@ -80,18 +68,6 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(
             () -> new NoSuchEntityException("No such User with id: " + id));
         userMapper.update(user, dto);
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        List<UserRole> allRoles = userRoleRepository.findAll();
-//        if (dto.roles() != null && !dto.roles().isEmpty()) {
-//            user.setRoles(new HashSet<>());
-//            for (User.Role dtoRole : dto.roles()) {
-//                UserRole userRole = userRoleRepository.findByRole(dtoRole).orElse(null);
-//                if (userRole == null || !allRoles.contains(userRole)) {
-//                    continue;
-//                }
-//                user.addRole(userRole);
-//            }
-//        }
         return userRepository.save(user);
     }
 
