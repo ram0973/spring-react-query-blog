@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "PKief.material-icon-theme",
+        "bradlc.vscode-tailwindcss",
+        "JayFong.generate-index",
+        "k--kato.intellij-idea-keybindings",
+        "eamodio.gitlens",
+        "EditorConfig.EditorConfig",
+        "humao.rest-client"
+    ]
+}
