@@ -24,8 +24,8 @@ services:
     ports:
       - "${TEST_DB_PORT-5433}:5432"
 
-  mail-dev:
-    image: maildev/maildev
-    ports:
-      - 1080:1080
-      - 1025:1025
+#  mail-dev:
+#    image: maildev/maildev
+#    ports:
+#      - 1080:1080
+#      - 1025:1025
