@@ -1,4 +1,5 @@
 import { AppSidebar } from '@/components/app-sidebar'
+import ThemeToggle from '@/components/theme-toggle'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -12,6 +13,7 @@ import { Outlet, createFileRoute, useLocation } from '@tanstack/react-router'
 import { Fragment } from 'react/jsx-runtime'
 
 export const Route = createFileRoute('/dashboard')({
+	ssr: 'data-only',
   component: IndexComponent,
 })
 
@@ -21,7 +23,7 @@ function IndexComponent() {
   const paths = pathname.split('/').filter(Boolean) // Убираем пустые элементы
   const breadcrumbs = paths.map((path, index) => ({
     label: path,
-    href: `/${paths.slice(0, index + 1).join(`/`)}`,
+    href: `/${paths.slice(0, index + 1).join('/')}`,
   }))
 
   return (
@@ -31,6 +33,7 @@ function IndexComponent() {
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
+          <ThemeToggle />
           <Breadcrumb>
             <BreadcrumbList>
               {/* Главный элемент (домашняя страница) */}
