@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ram0973.blog.common.exceptions.NoSuchEntityException;
+import ram0973.blog.users.dto.AllUsersResponse;
 import ram0973.blog.users.dto.UserCreateRequest;
 import ram0973.blog.users.dto.UserUpdateRequest;
 import ram0973.blog.users.dto.UsersResponse;
@@ -15,14 +16,24 @@ import java.io.IOException;
 
 @SuppressWarnings("UnnecessaryLocalVariable")
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 @Log4j2
 public class UserController {
 
     private final UserService userService;
 
-    @GetMapping
+    @GetMapping("/users-all")
+    //@PreAuthorize("hasRole('ADMIN')") // TODO: check everywhere for opportunity to use User.Role.ADMIN
+    public AllUsersResponse getUsers(
+        HttpServletResponse response
+    ) {
+        AllUsersResponse responseBody = userService.findAll();
+        response.addHeader("X-Total-Count", String.valueOf(responseBody.users().size()));
+        return responseBody;
+    }
+
+    @GetMapping("/users")
     //@PreAuthorize("hasRole('ADMIN')") // TODO: check everywhere for opportunity to use User.Role.ADMIN
     public UsersResponse getUsers(
         @RequestParam(required = false) String email,
