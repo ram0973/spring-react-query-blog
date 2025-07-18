@@ -14,7 +14,7 @@ const usersQueryOptions = () =>
 	})
 
 
-export const Route = createFileRoute("/dashboard/")({
+export const Route = createFileRoute("/dashboard/users/")({
   component: RouteComponent,
   loader: async ({ context }) => {
 		await context.queryClient.ensureQueryData(usersQueryOptions())
