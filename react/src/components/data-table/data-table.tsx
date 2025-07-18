@@ -25,7 +25,7 @@ interface DataTableProps<TData, TValue> {
 
 export function DataTable<TData, TValue>({ columns, data, findByField }: DataTableProps<TData, TValue>) {
 	const [sorting, setSorting] = React.useState<SortingState>([{
-		id: "createdAt",
+		id: "createdDate",
 		desc: true,
 	},])
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
@@ -63,7 +63,7 @@ export function DataTable<TData, TValue>({ columns, data, findByField }: DataTab
 			</div>
 			<div className="rounded-md border">
 				<Table>
-					<TableHeader>
+					<TableHeader className="bg-muted">
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
