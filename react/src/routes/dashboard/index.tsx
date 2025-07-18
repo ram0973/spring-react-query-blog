@@ -19,5 +19,10 @@ export const Route = createFileRoute("/dashboard/")({
 });
 
 function RouteComponent() {
-  return <div className="p-2">Hello Dashboard!</div>;
+  const { data: users } = useSuspenseQuery(usersQueryOptions())
+
+	return (
+		<DataTable data={users ?? []} columns={columns} findByField="name" />
+	)
+
 }
