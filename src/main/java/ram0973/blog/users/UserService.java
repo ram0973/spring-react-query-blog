@@ -14,10 +14,7 @@ import ram0973.blog.common.exceptions.EntityAlreadyExistsException;
 import ram0973.blog.common.exceptions.ForbiddenOperationException;
 import ram0973.blog.common.exceptions.NoSuchEntityException;
 import ram0973.blog.common.utils.PagedEntityUtils;
-import ram0973.blog.users.dto.UserCreateRequest;
-import ram0973.blog.users.dto.UserResponse;
-import ram0973.blog.users.dto.UserUpdateRequest;
-import ram0973.blog.users.dto.UsersResponse;
+import ram0973.blog.users.dto.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,6 +31,13 @@ public class UserService {
 
     @Value("${app.mailing.admin-email}")
     private String adminEmail;
+
+    public AllUsersResponse findAll() {
+        List<User> users = userRepository.findAll();
+        List<UserResponse> userResponses = users.stream().map(userMapper::map).toList();
+        AllUsersResponse dto = new AllUsersResponse(userResponses);
+        return dto;
+    }
 
     public UsersResponse findAllPaged(int page, int size, String[] sort) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(PagedEntityUtils.getSortOrders(sort)));
