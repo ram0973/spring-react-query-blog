@@ -47,7 +47,7 @@ public class UserController {
         return responseBody;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     //@PreAuthorize("hasRole('ADMIN')")
     public User getUserById(@PathVariable("id") int id) {
         User user = userService.findById(id).orElseThrow(
@@ -55,7 +55,7 @@ public class UserController {
         return user;
     }
 
-    @PostMapping
+    @PostMapping("/users")
     //@PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@Valid @RequestBody UserCreateRequest dto) throws IOException {
@@ -63,7 +63,7 @@ public class UserController {
         return user;
     }
 
-    @PatchMapping(path = "{id}")
+    @PatchMapping(path = "/users/{id}")
     //@PreAuthorize("hasRole('ADMIN')")
     public User updateUser(
         @PathVariable("id") int id, @Valid @RequestBody UserUpdateRequest dto) throws IOException {
@@ -71,7 +71,7 @@ public class UserController {
         return user;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/users/{id}")
     //@PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable("id") int id) {
