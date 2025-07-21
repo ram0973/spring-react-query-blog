@@ -11,16 +11,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
+import ram0973.blog.posts.Post;
+import ram0973.blog.posts.PostRepository;
 import ram0973.blog.roles.UserRole;
 import ram0973.blog.roles.UserRoleRepository;
 import ram0973.blog.users.User;
 import ram0973.blog.users.UserRepository;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.IntStream;
 
 @Configuration
@@ -37,6 +36,9 @@ public class DataFaker {
 
     @Value("${app.mailing.admin-email}")
     private String adminEmail;
+
+    private final PostRepository postRepository;
+
 
     @Bean
     @Transactional
@@ -107,6 +109,23 @@ public class DataFaker {
                 users.add(user);
             });
             userRepository.saveAll(users);
+
+            log.info("Preloading posts");
+
+            List<Post> posts = new ArrayList<>();
+            for (int i = 0; i < 50; i++) {
+                String title = (faker.lorem().sentence(20));
+                String slug = title.toLowerCase(Locale.ROOT).replace(" ", "-");
+                Post post = Post.builder()
+                    .title(title)
+                    .slug(slug)
+                    .excerpt(String.valueOf(faker.text()))
+                    .content(faker.lorem().paragraphs(5).toString())//twitter().text(new String[]{}, 50, 12))
+                    .enabled(true)
+                    .build();
+                posts.add(post);
+            }
+            postRepository.saveAll(posts);
         };
     }
 }

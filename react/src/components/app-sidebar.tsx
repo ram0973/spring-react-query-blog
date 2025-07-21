@@ -34,6 +34,18 @@ const data = {
         },
       ],
     },
+    {
+      title: "Posts",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: true,
+      items: [
+        {
+          title: "List",
+          url: "/dashboard/posts",
+        },
+      ],
+    },
   ]
 }
 

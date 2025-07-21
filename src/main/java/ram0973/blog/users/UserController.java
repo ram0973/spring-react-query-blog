@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ram0973.blog.common.exceptions.NoSuchEntityException;
+import ram0973.blog.posts.dto.AllPostsResponse;
 import ram0973.blog.users.dto.AllUsersResponse;
 import ram0973.blog.users.dto.UserCreateRequest;
 import ram0973.blog.users.dto.UserUpdateRequest;

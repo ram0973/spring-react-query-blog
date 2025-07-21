@@ -1,0 +1,27 @@
+### Get Posts
+GET http://localhost:8000/api/v1/posts
+
+### Get 1 Post
+GET http://localhost:8000/api/v1/posts/1
+
+### Create 1 Post
+POST http://localhost:8000/api/v1/posts
+Content-Type: application/json
+
+{
+  "title": "Post title",
+  "slug": "post-slug",
+  "content": "Post content"
+}
+
+### Update 1 Post
+PATCH http://localhost:8000/api/v1/posts/51
+Content-Type: application/json
+
+{
+  "title": "Changed post title",
+  "slug": "changed-post-title"
+}
+
+### Delete 1 Post
+DELETE http://localhost:8000/api/v1/posts/51

@@ -35,7 +35,7 @@ public class UserService {
     public AllUsersResponse findAll() {
         List<User> users = userRepository.findAll();
         List<UserResponse> userResponses = users.stream().map(userMapper::map).toList();
-        AllUsersResponse dto = new AllUsersResponse(userResponses);
+        var dto = new AllUsersResponse(userResponses);
         return dto;
     }
 
